@@ -8,20 +8,21 @@ void *send_thread_func(void *arg)
         int destination_pr_rank;
 
         MPI_Recv(&destination_pr_rank, 1, MPI_INT, MPI_ANY_SOURCE, TAG_PROC_RANK, MPI_COMM_WORLD, MPI_STATUSES_IGNORE);
-        if(destination_pr_rank == CMD_EXIT_THREAD)
+        if (destination_pr_rank == CMD_EXIT_THREAD)
         {
             break;
         }
 
         int send_task_count = pr_unused_task_count / 2;
 
+        MPI_Send(&send_task_count, 1, MPI_INT, destination_pr_rank, TAG_TASK_COUNT, MPI_COMM_WORLD);
+        MPI_Send(&pr_task_weight[pr_task_iterator + 1], send_task_count, MPI_INT, destination_pr_rank,
+                 TAG_TASK_WEIGHT + send_task_count, MPI_COMM_WORLD);
+
         pthread_mutex_lock(&mutex);
         pr_unused_task_count -= send_task_count;
         pr_task_iterator += send_task_count;
         pthread_mutex_unlock(&mutex);
-
-        MPI_Send(&send_task_count, 1, MPI_INT, destination_pr_rank, TAG_ADDITIONAL_TASK, MPI_COMM_WORLD);
-        MPI_Send(&pr_task_weight[pr_task_iterator + 1], send_task_count, MPI_INT, destination_pr_rank, TAG_ADDITIONAL_TASK, MPI_COMM_WORLD);
     }
 
     return NULL;

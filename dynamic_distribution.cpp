@@ -90,6 +90,8 @@ int execute_lists(int pr_rank, int comm_size, int pr_task_count)
     while (current_list != LIST_COUNT)
     {
         double time_iter_start = MPI_Wtime();
+        pr_done_task_count = 0;
+        pr_task_result = 0;
 
         init_repeat_count(pr_task_weight, pr_task_count, pr_rank, comm_size, current_list);
 
@@ -124,6 +126,7 @@ int get_pr_task_count(int pr_rank, int comm_size)
 int run_tasks(const int *repeat_count)
 {
     pr_task_iterator = 0;
+
     while (pr_unused_task_count)
     {
         pthread_mutex_lock(&mutex);
@@ -154,11 +157,11 @@ int get_additional_tasks(int pr_rank, int comm_size)
             MPI_Send(&pr_rank, 1, MPI_INT, i, TAG_PROC_RANK, MPI_COMM_WORLD);
 
             int additional_task_count = 0;
-            MPI_Recv(&additional_task_count, 1, MPI_INT, i, TAG_ADDITIONAL_TASK, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(&additional_task_count, 1, MPI_INT, i, TAG_TASK_COUNT, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
             if (additional_task_count != 0)
             {
-                MPI_Recv(pr_task_weight, additional_task_count, MPI_INT, i, TAG_ADDITIONAL_TASK, MPI_COMM_WORLD, MPI_STATUSES_IGNORE);
+                MPI_Recv(pr_task_weight, additional_task_count, MPI_INT, i, TAG_TASK_WEIGHT+additional_task_count, MPI_COMM_WORLD, MPI_STATUSES_IGNORE);
 
                 pthread_mutex_lock(&mutex);
                 pr_unused_task_count += additional_task_count;

@@ -8,11 +8,12 @@
 #include <cmath>
 
 #define TASK_COUNT 1000
-#define LIST_COUNT 5
+#define LIST_COUNT 3
 #define TASK_COUNT_RATE 1000
 
 #define TAG_PROC_RANK 1
-#define TAG_ADDITIONAL_TASK 2
+#define TAG_TASK_COUNT 2
+#define TAG_TASK_WEIGHT 3
 
 #define CMD_EXIT_THREAD -7
 

@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/twiggy/Doc_Git/Concurrent/POSIX_Threads/dynamic_distribution.cpp
+dynamic_distribution.h
+/Users/twiggy/Doc_Git/Concurrent/POSIX_Threads/dynamic_distribution.h
+
 /Users/twiggy/Doc_Git/Concurrent/POSIX_Threads/dynamic_distribution.h
 cstdio
 -
