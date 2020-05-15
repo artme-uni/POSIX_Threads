@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/twiggy/Doc_Git/Concurrent/POSIX_Threads/dynamic_distribution.h
+cstdio
+-
+mpi.h
+-
+pthread.h
+-
+cstdlib
+-
+cmath
+-
+
+/Users/twiggy/Doc_Git/Concurrent/POSIX_Threads/main.cpp
+cstdio
+-
+dynamic_distribution.h
+/Users/twiggy/Doc_Git/Concurrent/POSIX_Threads/dynamic_distribution.h
+
+/usr/local/opt/mpich/include/mpi.h
+stddef.h
+-
+cstdint
+-
+stdint.h
+-
+mpio.h
+/usr/local/opt/mpich/include/mpio.h
+mpicxx.h
+/usr/local/opt/mpich/include/mpicxx.h
+
+/usr/local/opt/mpich/include/mpicxx.h
+stdio.h
+-
+
+/usr/local/opt/mpich/include/mpio.h
+mpi.h
+/usr/local/opt/mpich/include/mpi.h
+
