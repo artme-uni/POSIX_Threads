@@ -22,12 +22,6 @@ cstdlib
 cmath
 -
 
-/Users/twiggy/Doc_Git/Concurrent/POSIX_Threads/main.cpp
-cstdio
--
-dynamic_distribution.h
-/Users/twiggy/Doc_Git/Concurrent/POSIX_Threads/dynamic_distribution.h
-
 /usr/local/opt/mpich/include/mpi.h
 stddef.h
 -
