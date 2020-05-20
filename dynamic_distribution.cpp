@@ -85,7 +85,7 @@ int init_repeat_count(int *repeat_count, int pr_task_count, int pr_rank, int cur
         x++;
     }
 
-/*    for (int i = 0; i < pr_task_count; ++i)
+/*for (int i = 0; i < pr_task_count; ++i)
     {
         repeat_count[i] = abs(50 - i % 100) * abs(pr_rank - (current_list % comm_size)) * TASK_COUNT_RATE;
     }*/
@@ -106,13 +106,14 @@ int execute_lists(int pr_rank, int comm_size, int pr_task_count)
 
         init_repeat_count(pr_task_weight, pr_task_count, pr_rank, current_list);
 
-/*        int average_weight = 0;
+        int average_weight = 0;
         for (int i = 0; i < pr_task_count; ++i)
         {
             average_weight += pr_task_weight[i];
         }
         average_weight /= pr_task_count;
-        printf("list %d - pr %d - weight %d\n", current_list, pr_rank, average_weight);*/
+        printf("list %d - pr %d - weight %d\n", current_list, pr_rank, average_weight);
+
 
         pthread_mutex_lock(&mutex);
         pr_unused_task_count = pr_task_count;
